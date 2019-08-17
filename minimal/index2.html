@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>wasm</title>
+</head>
+<body>
+	<script>
+        const run = async () => {
+const wasmFile = fetch("minimal4.wasm");
+const importsObject = {
+    "imports": { "log": console.log }
+}
+const { instance } =
+    await WebAssembly.instantiateStreaming(wasmFile, importsObject);
+instance.exports.print42();
+        }
+        run()
+	</script>
+</body>
+</html>
