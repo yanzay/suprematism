@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Go wasm</title>
+</head>
+
+<body>
+    <script src="wasm_exec.js"></script>
+    <script>
+        const run = async () => {
+            const go = new Go();
+            const wasmFile = fetch("main.wasm");
+            const { instance } =
+                await WebAssembly.instantiateStreaming(wasmFile, go.importObject);
+            await go.run(instance);
+        }
+        run()
+    </script>
+</body>
+
+</html>
